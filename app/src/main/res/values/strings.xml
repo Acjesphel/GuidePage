@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">GuidePage</string>
+    <string name="page_jump">跳过</string>
+    <string name="page_end">马上体验</string>
+    <string name="txt_page1_h1">移动教学</string>
+    <string name="txt_page1_h2_1">走动教学更容易</string>
+    <string name="txt_page1_h2_2">讲授巡查两兼顾</string>
+
+    <string name="txt_page2_h1">图片、视频快传</string>
+    <string name="txt_page2_h2_1">现场拍照、拍视频</string>
+    <string name="txt_page2_h2_2">瞬间投影到大屏</string>
+
+    <string name="txt_page3_h1">手机变U盘</string>
+    <string name="txt_page3_h2_1">备份、互传文件</string>
+    <string name="txt_page3_h2_2">手机电脑内容共享</string>
+
+    <string name="txt_page4_h1">课堂互动</string>
+    <string name="txt_page4_h2_1">师生实时互动</string>
+    <string name="txt_page4_h2_2">活跃课堂氛围</string>
+
+    <string name="txt_page5_h1">个人用户免费使用</string>
+    <string name="txt_page5_h2_1">无忧畅享教育公平</string>
+
 </resources>

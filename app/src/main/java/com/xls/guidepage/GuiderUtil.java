@@ -2,6 +2,7 @@ package com.xls.guidepage;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewCompat;
@@ -9,6 +10,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class GuiderUtil {
@@ -30,15 +33,12 @@ public class GuiderUtil {
 
     public static ImageView getItemImageView(Context context, @DrawableRes int placeholderResId, ImageView.ScaleType scaleType) {
         ImageView imageView = new ImageView(context);
-
-        Matrix matrix = new Matrix();
-        matrix.setScale(0.5f, 0.5f);
         imageView.setImageResource(placeholderResId);
-        imageView.setImageMatrix(matrix);
         imageView.setClickable(true);
         imageView.setScaleType(scaleType);
         return imageView;
     }
+
 
     public static void resetPageTransformer(List<? extends View> views) {
         if (views == null) {

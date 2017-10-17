@@ -39,6 +39,7 @@ public class GuiderView extends RelativeLayout implements GuiderViewPager.AutoPl
     private List<View> mHackyViews;
     private List<View> mViews;
     private LinearLayout mPointRealContainerLl;
+    private boolean isNeedPointContainer = true;
     private boolean mAutoPlayAble = true;
     private int mAutoPlayInterval = 3000;
     private int mPageChangeDuration = 800;
@@ -132,6 +133,8 @@ public class GuiderView extends RelativeLayout implements GuiderViewPager.AutoPl
     private void initCustomAttr(int attr, TypedArray typedArray) {
         if (attr == R.styleable.GuiderView_banner_pointDrawable) {
             mPointDrawableResId = typedArray.getResourceId(attr, R.drawable.guider_selector_point_solid);
+        } else if (attr == R.styleable.GuiderView_banner_pointShow) {
+            isNeedPointContainer = typedArray.getBoolean(attr,true);
         } else if (attr == R.styleable.GuiderView_banner_pointContainerBackground) {
             mPointContainerBackgroundDrawable = typedArray.getDrawable(attr);
         } else if (attr == R.styleable.GuiderView_banner_pointLeftRightMargin) {
@@ -435,9 +438,12 @@ public class GuiderView extends RelativeLayout implements GuiderViewPager.AutoPl
         if (mPointRealContainerLl != null) {
             mPointRealContainerLl.removeAllViews();
 
+            if (!isNeedPointContainer) return;
             if (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
                 lp.setMargins(mPointLeftRightMargin, mPointTopBottomMargin, mPointLeftRightMargin, mPointTopBottomMargin);
+                lp.width = GuiderUtil.dp2px(getContext(),8f);
+                lp.height = GuiderUtil.dp2px(getContext(),8f);
                 ImageView imageView;
                 for (int i = 0; i < mViews.size(); i++) {
                     imageView = new ImageView(getContext());
@@ -635,14 +641,16 @@ public class GuiderView extends RelativeLayout implements GuiderViewPager.AutoPl
 
     private void switchToPoint(int newCurrentPoint) {
 
-        if (mPointRealContainerLl != null) {
+        if (mPointRealContainerLl != null && isNeedPointContainer) {
             if (mViews != null && mViews.size() > 0 && newCurrentPoint < mViews.size() && ((mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)))) {
                 mPointRealContainerLl.setVisibility(View.VISIBLE);
                 for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
-                    mPointRealContainerLl.getChildAt(i).setEnabled(i == newCurrentPoint);
+                    mPointRealContainerLl.getChildAt(i).setEnabled(false);
                     // 处理指示器选中和未选中状态图片尺寸不相等
                     mPointRealContainerLl.getChildAt(i).requestLayout();
                 }
+                mPointRealContainerLl.getChildAt(newCurrentPoint).setEnabled(true);
+                mPointRealContainerLl.getChildAt(newCurrentPoint).requestLayout();
             } else {
                 mPointRealContainerLl.setVisibility(View.GONE);
             }

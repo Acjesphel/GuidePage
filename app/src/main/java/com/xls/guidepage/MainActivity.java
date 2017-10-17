@@ -2,6 +2,11 @@ package com.xls.guidepage;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -11,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         initView();
         setListener();
@@ -41,9 +47,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void processLogic() {
         // 设置数据源
-        mBackgroundBanner.setData(R.mipmap.img_guide_page1, R.mipmap.img_guide_page2, R.mipmap.img_guide_page3);
+        mBackgroundBanner.setData(R.drawable.img_guide_page1,
+                R.drawable.img_guide_page2,
+                R.drawable.img_guide_page3,
+                R.drawable.img_guide_page4,
+                R.drawable.img_guide_page5);
 
-        mForegroundBanner.setData(R.drawable.uoko_guide_foreground_1, R.drawable.uoko_guide_foreground_2, R.drawable.uoko_guide_foreground_3);
+        List<View> viewList = new ArrayList<>();
+        GuiderFloatTxtView txtView = new GuiderFloatTxtView(this);
+        txtView.setTitleRes(new int[]{R.string.txt_page1_h1, R.string.txt_page1_h2_1, R.string.txt_page1_h2_2});
+        viewList.add(txtView.getV());
+        GuiderFloatTxtView txtView1 = new GuiderFloatTxtView(this);
+        txtView1.setTitleRes(new int[]{R.string.txt_page2_h1, R.string.txt_page2_h2_1, R.string.txt_page2_h2_2});
+        viewList.add(txtView1.getV());
+        GuiderFloatTxtView txtView2 = new GuiderFloatTxtView(this);
+        txtView2.setTitleRes(new int[]{R.string.txt_page3_h1, R.string.txt_page3_h2_1, R.string.txt_page3_h2_2});
+        viewList.add(txtView2.getV());
+        GuiderFloatTxtView txtView3 = new GuiderFloatTxtView(this);
+        txtView3.setTitleRes(new int[]{R.string.txt_page4_h1, R.string.txt_page4_h2_1, R.string.txt_page4_h2_2});
+        viewList.add(txtView3.getV());
+        GuiderFloatTxtView txtView4 = new GuiderFloatTxtView(this);
+        txtView4.setTitleRes(new int[]{R.string.txt_page5_h1, R.string.txt_page5_h2_1});
+        viewList.add(txtView4.getV());
+        mForegroundBanner.setData(viewList);
     }
 
     @Override

@@ -16,8 +16,8 @@
             app:banner_pageChangeDuration="1000"
             app:banner_pointAutoPlayAble="false"
             app:banner_pointContainerBackground="@android:color/transparent"
-            app:banner_pointDrawable="@drawable/guider_selector_point_hollow"
-            app:banner_pointTopBottomMargin="15dp"/>
+            app:banner_pointShow="false"
+            app:banner_transitionEffect="fade"/>
 
         <com.xls.guidepage.GuiderView
             android:id="@+id/banner_guide_foreground"
@@ -27,32 +27,36 @@
             app:banner_pointAutoPlayAble="false"
             app:banner_pointContainerBackground="@android:color/transparent"
             app:banner_pointDrawable="@drawable/guider_selector_point_hollow"
-            app:banner_pointTopBottomMargin="15dp"/>
+            app:banner_pointTopBottomMargin="10dp"
+            app:banner_transitionEffect="alpha"/>
     </com.xls.guidepage.GuiderLinkageLayout>
 
     <TextView
         android:id="@+id/tv_guide_skip"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:clickable="true"
-        android:padding="4dp"
-        android:text="跳过 >"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"/>
+        android:text="@string/page_jump"
+        android:textColor="#fff"
+        android:textSize="13sp"
+        android:background="@drawable/img_jump_bg"/>
 
-    <Button
+    <TextView
         android:id="@+id/btn_guide_enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:background="@drawable/selector_btn_test"
-        android:padding="8dp"
-        android:text="进入主界面"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/img_guider_end_bg"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:paddingTop="14dp"
+        android:text="@string/page_end"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:visibility="gone"
